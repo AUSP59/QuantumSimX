@@ -1,0 +1,7 @@
+
+Developer Certificate of Origin 1.1
+By making a contribution to this project, I certify that:
+(1) The contribution is my original work or I have the right to submit it.
+(2) I understand and agree to the license of this project.
+(3) I have the right to submit this work under the open source license indicated.
+Signed-off-by: Your Name <email@example.com>

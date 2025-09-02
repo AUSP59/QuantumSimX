@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QUANTUM-SIMX output",
+  "type": "object",
+  "properties": {
+    "nqubits": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "probabilities": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer"
+      }
+    },
+    "outcomes": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        }
+      }
+    },
+    "expZ": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "expX": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "expY": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "timings": {
+      "type": "object",
+      "properties": {
+        "seconds": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "seconds"
+      ]
+    },
+    "expZZ": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      }
+    },
+    "probabilities_mitigated": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "expHW": {
+      "type": "number"
+    },
+    "parityZ": {
+      "type": "number"
+    },
+    "gateHistogram": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer"
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "inputHashFNV1a": {
+          "type": "integer"
+        },
+        "runId": {
+          "type": "integer"
+        },
+        "runTimestamp": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "version",
+        "inputHashFNV1a"
+      ]
+    }
+  },
+  "required": [
+    "nqubits",
+    "probabilities",
+    "counts",
+    "outcomes",
+    "expZ"
+  ]
+}

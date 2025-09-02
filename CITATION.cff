@@ -1,0 +1,11 @@
+
+cff-version: 1.2.0
+message: "If you use QUANTUM-SIMX, please cite it as below."
+title: "QUANTUM-SIMX: A portable, reproducible quantum circuit simulator (SV/DM)"
+authors:
+  - family-names: "Saavedra"
+    given-names: "Alan"
+  - name: "QUANTUM-SIMX Maintainers"
+version: "1.4.0"
+date-released: "2025-09-02"
+license: "MIT"
