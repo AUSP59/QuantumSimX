@@ -1,0 +1,26 @@
+
+name: slsa-provenance
+on:
+  release:
+    types: [published]
+permissions:
+  contents: write
+jobs:
+  build-provenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build package
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build -j
+          cmake --build build --target package
+      - name: Upload artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: build/quantum-simx-0.1.0-*.zip
+          asset_name: quantum-simx.zip
+          asset_content_type: application/zip

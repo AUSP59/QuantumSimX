@@ -1,0 +1,10 @@
+
+name: SLSA provenance (skeleton)
+on: { workflow_dispatch: {} }
+jobs:
+  provenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate provenance (placeholder)
+        run: echo "Provenance stub"

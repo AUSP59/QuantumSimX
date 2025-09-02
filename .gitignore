@@ -1,0 +1,31 @@
+
+# Build and editor artifacts
+/build*/
+/out/
+/dist/
+/.ccls-cache/
+/compile_commands.json
+/.cache/
+/.vscode/
+/.idea/
+*.user
+*.DS_Store
+*.swp
+*.swo
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake-build-*/
+_install/
+
+# Packages
+*.tag.gz
+*.tgz
+*.zip
+
+# Coverage
+coverage/
+*.gcda
+*.gcno
+*.info

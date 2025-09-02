@@ -1,0 +1,84 @@
+.TH quantum-simx 1 "September 2025" "QUANTUM-SIMX 0.7.0" "User Commands"
+.SH NAME
+quantum-simx \- state-vector and density-matrix quantum circuit simulator
+.SH SYNOPSIS
+.B quantum-simx
+[\-\-version|\-\-build-info] run [\-\-circuit FILE|\-\-qasm FILE] [\-\-backend state|density] [\-\-seed S] [\-\-shots K] [\-\-out FILE] [\-\-optimize] [\-\-observables all|z] [\-\-readout-p01 P] [\-\-readout-p10 P] [\-\-config FILE]
+.br
+.B quantum-simx grad
+[\-\-circuit FILE|\-\-qasm FILE] [\-\-wrt idx1,idx2,...] [\-\-seed S]
+.br
+.B quantum-simx unitary
+[\-\-circuit FILE|\-\-qasm FILE] [\-\-out unitary.csv]
+.br
+.B quantum-simx pauli
+[\-\-circuit FILE|\-\-qasm FILE] \-\-string "X0Z1Y3"
+.br
+.B quantum-simx gen
+[\-\-ghz N|\-\-qft N] [\-\-out FILE]
+.SH DESCRIPTION
+Runs quantum circuits with state-vector or density-matrix backends, supports noise, MPI, QASM subset, optimizer, gradients, observables, and reproducible outputs.
+
+
+Additional flags for `run`:
+  --map-line           Insert SWAPs to map circuit to a linear coupling graph
+  --threads N          (reserved) Hint for multi-threaded shots
+  --readout-mitigate   Emit probabilities_mitigated by inverting readout confusion
+
+Additional subcommands:
+  check   Validate basic structure of a results JSON
+
+
+.B quantum-simx stream
+[--circuit FILE|--qasm FILE] [--backend state|density] [--shots K] [--seed S] [--optimize] [--map-line]
+.nd
+Outputs NDJSON lines: a header (with version and inputHashFNV1a), one line per shot, then a footer with counts.
+
+
+Additional flags for `run`:
+  --map-topology FILE  Map to an arbitrary undirected coupling graph (text file with edges u v)
+
+Additional subcommands:
+  qv     Generate and evaluate a Quantum Volume circuit; report heavy output fraction
+  rb1q   One-qubit randomized benchmarking; outputs rb1q.csv
+
+
+Additional subcommands:
+  compare       Compare two result JSON files (TV, KL, JS, Hellinger, cosine)
+  canonicalize  Output a canonical .qsx with normalized formatting
+
+Environment:
+  SOURCE_DATE_EPOCH  If set, its value (seconds) is embedded as `runTimestamp` in provenance.
+
+
+Additional subcommands:
+  intervals    Compute Wilson confidence intervals from JSON counts
+  schedule     Estimate makespan given a simple timing.cfg
+  opt-commute  Commute Z/RZ on control through CNOT and merge consecutive Z-family gates
+  tomo1q-plan  Emit tomography circuits (X/Y/Z bases)
+  tomo1q-aggregate  Aggregate results into Bloch vector and 1-qubit density matrix
+  doctor       Quick project-level checks
+
+Shell completions:
+  zsh:  extras/completion/_quantum-simx
+  fish: extras/completion/quantum-simx.fish
+
+
+Additional subcommands:
+  version      Print binary version
+  resources    Gate counts, unit-depth, memory estimates for SV/DM
+  mutual       Classical mutual information I(A:B) over specified qubit sets
+  stabilizer   Check whether a circuit belongs to the Clifford/stabilizer family
+
+
+Additional subcommands:
+  partial-rho  Export reduced density matrix of a qubit subset (JSON, complex entries as [re,im])
+  shots-plan   Plan number of shots for a target Wilson CI width at a given z-score
+  metrics      Export Prometheus-style metrics from a run JSON
+
+
+Additional subcommands:
+  chsh        Evaluate CHSH correlations on two qubits (A=Z/A'=X; B=±45° around Y)
+  bootstrap   Bootstrap confidence intervals for top-K outcomes from counts JSON
+  batch       Run multiple circuits and output NDJSON summary per file
+  verify      Quick built-in verification (Bell, GHZ3, QFT2)

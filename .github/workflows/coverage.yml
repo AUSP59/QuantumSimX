@@ -1,0 +1,31 @@
+
+name: coverage
+on:
+  push: {branches: [ main ]}
+  pull_request: {branches: [ main ]}
+jobs:
+  cov:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deps
+        run: sudo apt-get update && sudo apt-get install -y lcov
+      - name: Build with coverage
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON -DCMAKE_CXX_FLAGS="--coverage"
+          cmake --build build -j
+          ctest --test-dir build --output-on-failure
+          lcov --capture --directory build --output-file coverage.info
+          lcov --remove coverage.info '/usr/*' --output-file coverage.info
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage.info
+
+      - name: Enforce coverage threshold
+        run: |
+          lcov --summary coverage.info | tee summary.txt
+          PCT=$(grep "lines\.*:" summary.txt | awk '{print $2}' | sed 's/%//')
+          echo "Coverage: $PCT%"
+          awk -v p=$PCT 'BEGIN{ if (p+0 < 95) exit 1; }'
