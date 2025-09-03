@@ -1,0 +1,11 @@
+
+site_name: QUANTUM-SIMX
+theme:
+  name: material
+nav:
+  - Home: README.md
+  - Whitepaper: docs/WHITEPAPER.md
+  - Security: SECURITY.md
+  - Contributing: CONTRIBUTING.md
+  - API (Doxygen): docs/doxygen/index.html
+plugins: []

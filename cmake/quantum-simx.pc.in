@@ -1,0 +1,11 @@
+
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: quantum-simx
+Description: C++ core library for QuantumSimX
+Version: @PROJECT_VERSION@
+Libs: -L${libdir} -lquantum_simx
+Cflags: -I${includedir}

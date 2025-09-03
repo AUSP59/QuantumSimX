@@ -1,0 +1,7 @@
+
+{
+  "name": "QUANTUM-SIMX",
+  "image": "mcr.microsoft.com/devcontainers/cpp:ubuntu",
+  "features": {},
+  "postCreateCommand": "cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo"
+}

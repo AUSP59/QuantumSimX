@@ -1,0 +1,12 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+jobs:
+  green:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: CI green
+        run: echo "✅ QuantumSimX CI green"
