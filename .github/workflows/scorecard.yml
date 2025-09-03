@@ -8,7 +8,7 @@ jobs:
   analysis:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ossf/scorecard-action@v2
         with:
           results_file: results.sarif
